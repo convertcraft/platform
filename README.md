@@ -473,6 +473,17 @@ Solo founder (maxstep650-del) has completed the high-risk technical development 
 
 **Response Guarantee:** All serious inquiries receive detailed response within 24 hours.
 
-*Last Updated: January 22, 2026 | All metrics Cloudflare verified*
+*Last Updated: January 23, 2026 | All metrics Cloudflare verified*
 
 </div>
+## **📜 License**
+
+This project is licensed under the **MIT License**.
+
+- **Permissions:** Commercial use, modification, distribution, private use
+- **Conditions:** Include original copyright and license notice
+- **Limitations:** No warranty or liability
+
+**Full license text:** See [LICENSE](LICENSE) file.
+
+*Note: Upon acquisition or partnership, license terms can be modified as needed.*
