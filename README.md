@@ -486,7 +486,3 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 - ⚠️ **Limitations:** No warranty or liability
 
 *Note for acquirers/partners: License can be modified upon acquisition.*
-
-**Full license text:** See [LICENSE](LICENSE) file.
-
-*Note: Upon acquisition or partnership, license terms can be modified as needed.*
