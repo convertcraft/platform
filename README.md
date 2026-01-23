@@ -476,13 +476,16 @@ Solo founder (maxstep650-del) has completed the high-risk technical development 
 *Last Updated: January 23, 2026 | All metrics Cloudflare verified*
 
 </div>
-## **📜 License**
+## 📜 License
 
-This project is licensed under the **MIT License**.
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for the full text.
 
-- **Permissions:** Commercial use, modification, distribution, private use
-- **Conditions:** Include original copyright and license notice
-- **Limitations:** No warranty or liability
+**Key Points:**
+- ✅ **Permissions:** Commercial use, modification, distribution, private use
+- ✅ **Conditions:** Include copyright and license notice
+- ⚠️ **Limitations:** No warranty or liability
+
+*Note for acquirers/partners: License can be modified upon acquisition.*
 
 **Full license text:** See [LICENSE](LICENSE) file.
 
