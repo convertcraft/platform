@@ -30,7 +30,7 @@ jobs:
             echo "package.json not found in ${GITHUB_WORKSPACE}" >&2
             exit 2
           fi
-          npm install --prefix "${GITHUB_WORKSPACE}"
+          npm install --prefix "${GITHUB_WORKSPACE}" --ignore-scripts
 
       - name: Write GSC service account key
         env:
