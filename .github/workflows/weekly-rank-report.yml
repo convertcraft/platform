@@ -24,13 +24,14 @@ jobs:
 
       - name: Install dependencies
         run: |
+          echo "github.workspace=${GITHUB_WORKSPACE}"
           pwd
-          ls -la
-          if [ ! -f package.json ]; then
-            echo "package.json not found in $(pwd)" >&2
+          ls -la "${GITHUB_WORKSPACE}"
+          if [ ! -f "${GITHUB_WORKSPACE}/package.json" ]; then
+            echo "package.json not found in ${GITHUB_WORKSPACE}" >&2
             exit 2
           fi
-          npm install
+          npm install --prefix "${GITHUB_WORKSPACE}"
 
       - name: Write GSC service account key
         env:
@@ -47,7 +48,7 @@ jobs:
           GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
         run: |
           SITE_URL_VALUE="${GSC_SITE_URL:-https://www.convert-craft.com/}"
-          npm run rank:weekly -- --days 28 --key ./gsc-key.json --siteUrl "$SITE_URL_VALUE" --top 10 --minImpressions 1 --opportunityCtr 0.05
+          npm --prefix "${GITHUB_WORKSPACE}" run rank:weekly -- --days 28 --key "${GITHUB_WORKSPACE}/gsc-key.json" --siteUrl "$SITE_URL_VALUE" --top 10 --minImpressions 1 --opportunityCtr 0.05
 
       - name: Build artifact name
         id: artifact_meta
@@ -57,7 +58,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.artifact_meta.outputs.name }}
-          path: rank-reports/
+          path: ${{ github.workspace }}/rank-reports/
           if-no-files-found: error
 
       - name: Cleanup key file
