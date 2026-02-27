@@ -49,6 +49,16 @@ jobs:
           SITE_URL_VALUE="${GSC_SITE_URL:-https://www.convert-craft.com/}"
           npm --prefix "${GITHUB_WORKSPACE}" run rank:weekly -- --days 28 --key "${GITHUB_WORKSPACE}/gsc-key.json" --siteUrl "$SITE_URL_VALUE" --top 10 --minImpressions 1 --opportunityCtr 0.05
 
+      - name: Run CTR opportunity analysis (optional)
+        run: |
+          RUN_DATE="$(date -u +%F)"
+          SNAPSHOT_PATH="${GITHUB_WORKSPACE}/data/rank-snapshots/latest-rank-snapshot.json"
+          if [ -f "$SNAPSHOT_PATH" ]; then
+            npm --prefix "${GITHUB_WORKSPACE}" run ctr:analyze -- --snapshot "$SNAPSHOT_PATH" --minImpressions 500 --maxCtr 0.02 --top 30 --out "${GITHUB_WORKSPACE}/rank-reports/ctr-opportunities-${RUN_DATE}.md" --csvOut "${GITHUB_WORKSPACE}/rank-reports/ctr-opportunities-${RUN_DATE}.csv"
+          else
+            echo "Skipping CTR analysis: snapshot not found at $SNAPSHOT_PATH"
+          fi
+
       - name: Build artifact name
         id: artifact_meta
         run: echo "name=weekly-rank-report-$(date -u +%Y%m%d)" >> "$GITHUB_OUTPUT"

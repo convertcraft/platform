@@ -13,6 +13,7 @@ This baseline adds snapshot + diff reporting using Google Search Console Search 
 - `npm run rank:diff -- --snap1 <file> --snap2 <file>`
 - `npm run rank:report`
 - `npm run rank:weekly`
+- `npm run ctr:analyze`
 
 ## Data storage
 
@@ -155,6 +156,9 @@ npm run rank:weekly -- --days 28 --key ./gsc-key.json --siteUrl <site-url> --top
 It then uploads `rank-reports/` as an artifact named like:
 
 - `weekly-rank-report-YYYYMMDD`
+
+The weekly workflow can also generate CTR opportunities from the latest snapshot.
+If enabled, CTR artifacts are written into `rank-reports/` and included in the same uploaded artifact.
 
 Manual test:
 

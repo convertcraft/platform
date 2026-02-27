@@ -46,6 +46,7 @@
     "rank:diff": "node scripts/seo-rank-diff.mjs",
     "rank:report": "node scripts/seo-rank-diff.mjs --latest --dir data/rank-snapshots --out data/rank-snapshots/latest-rank-report.md",
     "rank:weekly": "node scripts/seo-rank-weekly.mjs",
+    "ctr:analyze": "node scripts/seo-ctr-analysis.mjs",
     "outreach:dryrun": "node scripts/outreach-sender.mjs --mode dryrun",
     "outreach:send": "node scripts/outreach-sender.mjs --mode send"
   },
