@@ -3,7 +3,7 @@ name: Weekly Rank Report
 on:
   schedule:
     - cron: '0 9 * * 1'
-  workflow_dispatch: {}
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -23,7 +23,14 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          pwd
+          ls -la
+          if [ ! -f package.json ]; then
+            echo "package.json not found in $(pwd)" >&2
+            exit 2
+          fi
+          npm install
 
       - name: Write GSC service account key
         env:
