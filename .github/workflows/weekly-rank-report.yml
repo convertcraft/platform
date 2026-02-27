@@ -1,0 +1,58 @@
+name: Weekly Rank Report
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  weekly-rank-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Write GSC service account key
+        env:
+          SA_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_KEY }}
+        run: |
+          if [ -z "$SA_JSON" ]; then
+            echo "Missing secret: GSC_SERVICE_ACCOUNT_KEY" >&2
+            exit 2
+          fi
+          printf '%s' "$SA_JSON" > ./gsc-key.json
+
+      - name: Run weekly rank report
+        env:
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+        run: |
+          SITE_URL_VALUE="${GSC_SITE_URL:-https://www.convert-craft.com/}"
+          npm run rank:weekly -- --days 28 --key ./gsc-key.json --siteUrl "$SITE_URL_VALUE" --top 10 --minImpressions 1 --opportunityCtr 0.05
+
+      - name: Build artifact name
+        id: artifact_meta
+        run: echo "name=weekly-rank-report-$(date -u +%Y%m%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Upload weekly rank reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.artifact_meta.outputs.name }}
+          path: rank-reports/
+          if-no-files-found: error
+
+      - name: Cleanup key file
+        if: always()
+        run: rm -f ./gsc-key.json
