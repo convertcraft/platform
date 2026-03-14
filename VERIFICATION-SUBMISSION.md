@@ -19,7 +19,8 @@ File and Storage
 
 ## Links
 
-- Repository: REPLACE_WITH_PUBLIC_GITHUB_REPO
+- Repository: https://github.com/convertcraft/platform/tree/n8n-convertcraft-mvp-1.1.0
+- Pull Request: https://github.com/convertcraft/platform/pull/new/n8n-convertcraft-mvp-1.1.0
 - Documentation: https://www.convert-craft.com/api-docs/
 - RapidAPI: https://rapidapi.com/convertcraftnoreply/api/convertcraft-tools
 
@@ -43,15 +44,15 @@ File and Storage
   - Simplified
   - Raw
   - Selected Fields
-- Operation-specific parameters for compression, OCR, resize, and enhancement controls
+- Operation-specific parameters for PDF conversion/compression and image conversion/resize
 
 ## Testing Status
 
-- [ ] Local build validated
-- [ ] All operations tested
-- [ ] Error handling verified
-- [ ] Output modes verified
-- [ ] Credentials flow verified
+- [x] Local build validated
+- [x] MVP operations tested (PDF Convert, PDF Compress, Image Convert, Image Resize)
+- [x] Error handling verified
+- [x] Output modes verified
+- [x] Credentials flow verified
 
 ## Maintenance Commitment
 
